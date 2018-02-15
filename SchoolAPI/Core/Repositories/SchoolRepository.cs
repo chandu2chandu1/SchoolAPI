@@ -26,7 +26,8 @@ namespace SchoolAPI.Core.Repositories
 
         public School GetSchoolByStudentId(Student student)
         {
-            return Context.Set<School>().Where(s => s.Students == student).FirstOrDefault();
+            throw new NotImplementedException();
+            //return Context.Set<School>().Where(s => s.Students == student).FirstOrDefault();
         }
     }
 }

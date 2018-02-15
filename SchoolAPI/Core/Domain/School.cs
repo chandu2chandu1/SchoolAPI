@@ -8,7 +8,6 @@ namespace SchoolAPI.Core.Domain
 {
     public class School
     {
-
         public int Id { get; set; }
 
         [Required]
@@ -16,7 +15,5 @@ namespace SchoolAPI.Core.Domain
 
         [Required]
         public string Address { get; set; }
-
-        public IEnumerable<Student> Students { get; set; }
     }
 }

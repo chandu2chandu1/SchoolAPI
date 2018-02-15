@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace SchoolAPI
+namespace SchoolAPI.Api
 {
     public class StudentController : ApiController
     {
@@ -28,14 +28,31 @@ namespace SchoolAPI
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            Student student = _unitOfWork.Students.Get(id);
+            if (student != null)
+                return Ok(student);
+            HttpResponseMessage responseMessage = new HttpResponseMessage(HttpStatusCode.NotFound);
+            responseMessage.ReasonPhrase = "No student found.";
+            throw new HttpResponseException(responseMessage);
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public IHttpActionResult CreatedStudent(Student student)
         {
+            if (student.School == null)
+                student.School = _unitOfWork.Schools.GetAll().FirstOrDefault();
+
+            //if (ModelState.IsValid)
+            {
+                _unitOfWork.Students.Add(student);
+                _unitOfWork.Complete();
+                return Created(Request.RequestUri.AbsoluteUri + "/" + student.Id, student);
+            }
+
+            throw new HttpResponseException(HttpStatusCode.InternalServerError);
         }
 
         // PUT api/<controller>/5

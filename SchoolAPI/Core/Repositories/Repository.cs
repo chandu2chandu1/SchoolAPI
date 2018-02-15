@@ -30,7 +30,7 @@ namespace SchoolAPI.Core.Repositories
         {
             return Context.Set<TEntity>().Where(predicate);
         }
-
+        
         public TEntity Get(int id)
         {
             return Context.Set<TEntity>().Find(id);

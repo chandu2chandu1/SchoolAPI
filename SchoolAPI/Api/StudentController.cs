@@ -40,12 +40,12 @@ namespace SchoolAPI.Api
 
         // POST api/<controller>
         [HttpPost]
-        public IHttpActionResult CreatedStudent(Student student)
+        public IHttpActionResult CreateStudent(Student student)
         {
             if (student.School == null)
                 student.School = _unitOfWork.Schools.GetAll().FirstOrDefault();
 
-            //if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _unitOfWork.Students.Add(student);
                 _unitOfWork.Complete();
@@ -56,13 +56,47 @@ namespace SchoolAPI.Api
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult UpdateStudent(int id, Student student)
         {
+            if (id>0)
+            {
+                Student originalStudent = _unitOfWork.Students.Get(id);
+                if(originalStudent != null)
+                {
+                    originalStudent.FirstName = student.FirstName;
+                    originalStudent.LastName = student.LastName;
+                    originalStudent.SurName = student.SurName;
+                    originalStudent.School = _unitOfWork.Schools.Get(student.Id);
+                    originalStudent.DateOfBirth = student.DateOfBirth;
+
+                    _unitOfWork.Complete();
+                    return Ok("Student information update.");
+                }
+            }
+
+            HttpResponseMessage responseMessage = new HttpResponseMessage(HttpStatusCode.BadRequest);
+            responseMessage.ReasonPhrase = "The Student not found.  Please try again.";
+            throw new HttpResponseException(responseMessage);
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            if (id > 0)
+            {
+                var student = _unitOfWork.Students.Get(id);
+                if(student != null)
+                {
+                    _unitOfWork.Students.Remove(student);
+                    _unitOfWork.Complete();
+                    return Ok("Student removed from the database.");
+                }
+            }
+
+            HttpResponseMessage responseMessage = new HttpResponseMessage(HttpStatusCode.NotFound);
+            responseMessage.ReasonPhrase = "The student is not available or is already removed.";
+            throw new HttpResponseException(responseMessage);
         }
     }
 }

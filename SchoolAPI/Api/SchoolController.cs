@@ -7,12 +7,13 @@ using System.Web.Http;
 using SchoolAPI.Core;
 using SchoolAPI.Core.Domain;
 using SchoolAPI.Core.Repositories;
+using System.Web.Http.Cors;
 
 namespace SchoolAPI.Api
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class SchoolController : ApiController
     {
-
         IUnitOfWork _unitOfWork;
 
         public SchoolController(IUnitOfWork unitOfWork)

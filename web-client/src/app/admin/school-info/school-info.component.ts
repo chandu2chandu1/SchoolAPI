@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
+import { SchoolModel } from '../../models/school.model';
+import 'rxjs';
 
 @Component({
   selector: 'app-school-info',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SchoolInfoComponent implements OnInit {
 
-  constructor() { }
+  schoolList: SchoolModel[] = [];
+  constructor(private _adminServices: AdminService) { }
 
   ngOnInit() {
+    this.getAllSchools();
   }
 
+  getAllSchools() {
+    this._adminServices.getAllSchools().subscribe(
+      response => this.schoolList = response.json()
+    );
+  }
 }

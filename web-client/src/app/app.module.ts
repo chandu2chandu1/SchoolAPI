@@ -5,6 +5,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SchoolInfoComponent } from './admin/school-info/school-info.component';
+import { AdminService } from './services/admin.service';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,9 +17,11 @@ import { SchoolInfoComponent } from './admin/school-info/school-info.component';
     SchoolInfoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [ AdminService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

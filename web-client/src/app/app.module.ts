@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { SchoolInfoComponent } from './admin/school-info/school-info.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    SchoolInfoComponent
   ],
   imports: [
     BrowserModule

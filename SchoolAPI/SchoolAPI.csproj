@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201802140816472_SeedDB.Designer.cs">
       <DependentUpon>201802140816472_SeedDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802160937002_SchoolLogo-field-added.cs" />
+    <Compile Include="Migrations\201802160937002_SchoolLogo-field-added.Designer.cs">
+      <DependentUpon>201802160937002_SchoolLogo-field-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -353,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802140816472_SeedDB.resx">
       <DependentUpon>201802140816472_SeedDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802160937002_SchoolLogo-field-added.resx">
+      <DependentUpon>201802160937002_SchoolLogo-field-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

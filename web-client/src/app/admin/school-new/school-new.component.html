@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>New School</h1>
+    <form>
+      <div class="form-group">
+        <label for="SchoolName">School Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          name="SchoolName" 
+          [ngModelOptions]="{standalone: true}" 
+          [(ngModel)]="newSchool.SchoolName" 
+          required>
+      </div>
+      <div class="form-group">
+        <label for="logoURL">LOGO Url</label>
+        <input type="url" class="form-control" id="logoURL" [(ngModel)]="newSchool.SchoolLogo" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="schoolAddress">Address</label>
+        <textarea id="schoolAddress" class="form-control" [(ngModel)]="newSchool.Address"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success" (click)="submitData()">Submit</button>
+    </form>
+</div>

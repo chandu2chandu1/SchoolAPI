@@ -13,6 +13,8 @@ namespace SchoolAPI.Core.Domain
         [Required]
         public string Schoolname { get; set; }
 
+        public string SchoolLogo { get; set; }
+
         [Required]
         public string Address { get; set; }
     }

@@ -61,6 +61,20 @@ namespace SchoolAPI.Api
             throw new HttpResponseException(responseMessage);
         }
 
+        // POST api/<controller>
+        [HttpPost]
+        public IHttpActionResult CreateStudent(School school)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Schools.Add(school);
+                _unitOfWork.Complete();
+                return Created(Request.RequestUri.AbsoluteUri + "/" + school.Id, school);
+            }
+
+            throw new HttpResponseException(HttpStatusCode.InternalServerError);
+        }
+
         [HttpDelete]
         public IHttpActionResult DeleteSchool(int id)
         {

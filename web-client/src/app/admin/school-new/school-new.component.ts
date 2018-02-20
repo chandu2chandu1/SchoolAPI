@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SchoolModel } from '../../models/school.model';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-school-new',
@@ -10,13 +11,17 @@ export class SchoolNewComponent implements OnInit {
 
   newSchool = new SchoolModel(0, "", "", "");
 
-  constructor() { }
+  constructor(private _adminService:AdminService) { }
 
   ngOnInit() {
   }
 
   submitData() {
     console.log(this.newSchool);
+    this._adminService.addNewSchool(this.newSchool)
+      .subscribe(response => {
+        console.log(response.json());
+    })
   }
 
 }

@@ -1,14 +1,18 @@
 <div class="row" *ngIf="schoolList.length>0">
-  <div class="col-md-3" style="cursor:pointer" *ngFor="let school of schoolList">
+  <div class="col-md-2" style="cursor:pointer" *ngFor="let school of schoolList">
     <div class="card">
-      <img class="card-img-top" style="max-height: 220px;min-height:220px" src="{{ (school.SchoolLogo) ? school.SchoolLogo : '../assets/images/no-exception.png' }}">
+      <img 
+        class="card-img-top" 
+        style="max-height: 180px;min-height:180px" 
+        src="{{ (school.SchoolLogo) ? school.SchoolLogo : '../assets/images/no-exception.png' }}"
+        [routerLink]="['/school/edit', school.Id]">
 
-      <div class="card-block">
+      <!-- <div class="card-block">
         <h4 class="card-title">
-          <a class="btn btn-primary" target="_blank">{{ school.Schoolname }}</a>
+          <a class="btn btn-primary" target="_blank" routerLink="/editschool/{school.Id}">{{ school.Schoolname }}</a>
         </h4>
-        <!-- <a [routerLink]="['/', u.login]" class="btn btn-primary">Does Nothing</a> -->
-      </div>
+        <a [routerLink]="['/', u.login]" class="btn btn-primary">Does Nothing</a>
+      </div> -->
     </div>
   </div>
 </div>

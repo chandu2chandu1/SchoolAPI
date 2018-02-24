@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { SchoolNewComponent } from './admin/school-new/school-new.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { EditSchoolComponent } from './admin/edit-school/edit-school.component';
 
 const appRoutes: Routes = [{
   path: 'SchoolInfo',
@@ -18,6 +19,10 @@ const appRoutes: Routes = [{
   {
     path: 'newschool',
     component: SchoolNewComponent
+  },
+  {
+    path: "school/edit/:id",
+    component:EditSchoolComponent
   }
 ]
 
@@ -27,7 +32,8 @@ const appRoutes: Routes = [{
     MainMenuComponent,
     SchoolInfoComponent,
     SchoolNewComponent,
-    DropdownDirective
+    DropdownDirective,
+    EditSchoolComponent
   ],
   imports: [
     BrowserModule,

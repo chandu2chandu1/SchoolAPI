@@ -51,6 +51,7 @@ namespace SchoolAPI.Api
                 {
                     originalSchool.Schoolname = school.Schoolname;
                     originalSchool.Address = school.Address;
+                    originalSchool.SchoolLogo = school.SchoolLogo;
                     _unitOfWork.Complete();
                     return Ok("School updated successfully.");
                 }

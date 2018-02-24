@@ -1,6 +1,3 @@
-<!-- <button type="button" (click)="goBack()" class="btn">
-  <span class="glyphicons glyphicons-step-backward">Back</span>
-</button> -->
 <div *ngIf="f.pending">Loading..</div>
 <h2>Edit School</h2>
 <div class="row">
@@ -43,6 +40,7 @@
               class="btn btn-danger"
               (click)="Cancel()">Cancel</button>
         </form>
+        
   </div>
   <div class="col-md-4">
     <img 
@@ -50,4 +48,17 @@
       src="{{ (editableSchool.SchoolLogo) ? editableSchool.SchoolLogo : '../assets/images/no-exception.png' }}" 
       style="max-height: 220px;min-height:220px" />
   </div>
+  
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-12">
+    <a class="btn btn-secondary" [routerLink]="['/school/edit', editableSchool.Id - 1]">Previous Record</a>
+    <a class="btn btn-secondary" [routerLink]="['/school/edit', editableSchool.Id + 1]">Next Record</a>
+  </div>
+</div>
+
+<br/>
+<div class="alert alert-danger" role="alert" *ngIf="editableSchool.Id<=0 || hasErrorFetching">
+    That's all we found here..
 </div>

@@ -14,6 +14,7 @@ export class EditSchoolComponent implements OnInit {
 
   editableSchool: SchoolModel = new SchoolModel(0, "", "", "");
   @ViewChild('f') schoolForm: NgForm;
+  hasErrorFetching: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +28,19 @@ export class EditSchoolComponent implements OnInit {
   }
 
   getSchool(schoolID: number) {
+    this.hasErrorFetching = false;
     if (schoolID > 0) {
       this.adminService.getSchool(schoolID).subscribe(
-        data => this.editableSchool = data.json()
+        data => this.editableSchool = data.json(),
+        error => {
+          if (error.status == 404) {
+            this.hasErrorFetching = true;
+          }
+        }
       )
     }
+    else
+      this.hasErrorFetching = true;  
   }
 
   Cancel() {

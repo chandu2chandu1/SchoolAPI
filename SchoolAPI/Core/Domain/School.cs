@@ -11,7 +11,7 @@ namespace SchoolAPI.Core.Domain
         public int Id { get; set; }
 
         [Required]
-        public string Schoolname { get; set; }
+        public string SchoolName { get; set; }
 
         public string SchoolLogo { get; set; }
 

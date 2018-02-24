@@ -1,7 +1,7 @@
-<button type="button" (click)="goBack()" class="btn">
+<!-- <button type="button" (click)="goBack()" class="btn">
   <span class="glyphicons glyphicons-step-backward">Back</span>
-</button>
-
+</button> -->
+<div *ngIf="f.pending">Loading..</div>
 <h2>Edit School</h2>
 <div class="row">
   <div class="col-md-8">
@@ -12,7 +12,7 @@
               type="text"
               name="SchoolName"
               class="form-control"
-              [(ngModel)]="editableSchool.Schoolname"
+              [(ngModel)]="editableSchool.SchoolName"
               required>
           </div>
           <div class="form-group">
@@ -38,11 +38,15 @@
               type="submit"
               class="btn btn-success"
               [disabled]="f.invalid || f.pristine">Submit</button>
+            <button 
+              type="button"
+              class="btn btn-danger"
+              (click)="Cancel()">Cancel</button>
         </form>
   </div>
   <div class="col-md-4">
     <img 
-      alt="{{ editableSchool.Schoolname }}"
+      alt="{{ editableSchool.SchoolName }}"
       src="{{ (editableSchool.SchoolLogo) ? editableSchool.SchoolLogo : '../assets/images/no-exception.png' }}" 
       style="max-height: 220px;min-height:220px" />
   </div>

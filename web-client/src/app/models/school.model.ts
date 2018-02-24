@@ -1,7 +1,7 @@
 export class SchoolModel{
 
     constructor(
-        public SchoolId: number,
+        public Id: number,
         public SchoolName: string,
         public SchoolLogo: string,
         public Address:string

@@ -17,7 +17,7 @@ namespace SchoolAPI.Migrations
             context.Schools.Add(
                 new Core.Domain.School
                 {
-                    Schoolname = "Default School",
+                    SchoolName = "Default School",
                     Address = "Bangalore"
                 });
 

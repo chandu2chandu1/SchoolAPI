@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SchoolModel } from '../../models/school.model';
 import { AdminService } from '../../services/admin.service';
-import { Form } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
+import 'rxjs';
 
 @Component({
   selector: 'app-edit-school',
@@ -11,12 +12,8 @@ import { Form } from '@angular/forms';
 })
 export class EditSchoolComponent implements OnInit {
 
-  editableSchool: SchoolModel = {
-    SchoolId: 0,
-    Address: "",
-    SchoolLogo: "",
-    SchoolName:""
-  };
+  editableSchool: SchoolModel = new SchoolModel(0, "", "", "");
+  @ViewChild('f') schoolForm: NgForm;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,9 +34,14 @@ export class EditSchoolComponent implements OnInit {
     }
   }
 
-  goBack() {
-    this.router.navigate(["../SchoolInfo"]);
-  }
+  Cancel() {
+    if (this.schoolForm.dirty) {
+      if (confirm("Any modifications made wont be saved.  Do you want to cancel."))
+        this.router.navigate(["../SchoolInfo"]);
+    }
+    else
+      this.router.navigate(["../SchoolInfo"]);
+   }
 
   SubmitForm() {
     this.adminService.updateSchool(this.editableSchool).subscribe(

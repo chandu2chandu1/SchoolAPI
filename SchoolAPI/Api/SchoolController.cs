@@ -49,7 +49,7 @@ namespace SchoolAPI.Api
                 School originalSchool = _unitOfWork.Schools.Get(id);
                 if(originalSchool!= null)
                 {
-                    originalSchool.Schoolname = school.Schoolname;
+                    originalSchool.SchoolName = school.SchoolName;
                     originalSchool.Address = school.Address;
                     originalSchool.SchoolLogo = school.SchoolLogo;
                     _unitOfWork.Complete();
